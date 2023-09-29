@@ -1,4 +1,13 @@
-Question1Screen
+
+<QuizManager>:
+    Question1Screen:
+        name: "question1"
+    CorrectScreen:
+        name: "correct"
+    IncorrectScreen:
+        name: "error"
+    Question2Screen:
+        name: "Question 2"
 
 <Question1Screen>:
     BoxLayout:
@@ -10,18 +19,50 @@ Question1Screen
             orientation: "horizontal"
             Button:
                 text: "2 miles"
+                on_release: root.answer_question(False)
             Button:
-                text: "6 miles"
+                text: "10 Kilometers"
+                on_release: root.answer_question(False)
             Button:
                 text: "3 miles"
+                on_release: root.answer_question(True)
+
+<Question2Screen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            size_hint: 1, .2
+            text: "1+2"
+        BoxLayout:
+            orientation: "horizontal"
             Button:
-                text: "5k - kilometer"
+                text: "21"
+                on_release: root.answer_question(False)
             Button:
-                text: "10k - kilometer"
+                text: "12"
+                on_release: root.answer_question(False)
+            Button:
+                text: "3"
+                on_release: root.answer_question(True)
 
 <CorrectScreen>:
     BoxLayout:
-        orientation: "horizontal"
+        orientation: "vertical"
         spacing: 10
-        Button:
+        Label:
             text: "correct!"
+            size_hint: 1,1
+        Button:
+            text: "next question"
+            size_hint: 1,1
+
+<IncorrectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        Label:
+            text: "incorrect!"
+            size_hint: 1,1
+        Button:
+            text: "next question"
+            size_hint: 1,1
