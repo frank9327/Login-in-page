@@ -1,13 +1,12 @@
-
 <QuizManager>:
     Question1Screen:
         name: "question1"
     CorrectScreen:
         name: "correct"
     IncorrectScreen:
-        name: "error"
+        name: "incorrect"
     Question2Screen:
-        name: "Question 2"
+        name: "question2"
 
 <Question1Screen>:
     BoxLayout:
@@ -32,18 +31,16 @@
         orientation: "vertical"
         Label:
             size_hint: 1, .2
-            text: "1+2"
+            text: "How many miles are in 3200m(answer in text)"
         BoxLayout:
             orientation: "horizontal"
+            TextInput:
+                id: two
+                hint_text: "enter the answer here"
             Button:
-                text: "21"
-                on_release: root.answer_question(False)
-            Button:
-                text: "12"
-                on_release: root.answer_question(False)
-            Button:
-                text: "3"
-                on_release: root.answer_question(True)
+                text: "Press Enter"
+                on_release: root.answer_question(two.text)
+
 
 <CorrectScreen>:
     BoxLayout:
@@ -55,14 +52,19 @@
         Button:
             text: "next question"
             size_hint: 1,1
+            on_release:
+                root.advance()
+
 
 <IncorrectScreen>:
     BoxLayout:
         orientation: "vertical"
         spacing: 10
         Label:
-            text: "incorrect!"
+            text: "Incorrect!"
             size_hint: 1,1
         Button:
             text: "next question"
             size_hint: 1,1
+            on_release:
+                root.advance()
