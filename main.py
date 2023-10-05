@@ -4,12 +4,46 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 Builder.load_file("NewLogin.kv")
 
+users= {"bob":"bobpass","billy":"billypass","himothy":"himpass"}
+
 class HomeScreen(Screen):
-    def answer_question(self,text):
-        if text.lower() == "two":
-            self.manager.current = "correct"
+    def Screen_choice(self,bool):
+        if bool:
+            self.manager.current = "Create"
         else:
-            self.manager.current = "incorrect"
+            self.manager.current = "Login"
+
+class CreateScreen(Screen):
+    def enter_login(self, username,password,newpassword):
+        special = "~!@#$%^&*()_+-="
+        has_special = False
+        numbers = "1234567890"
+        has_numbers = False
+        has_capital = False
+        has_lowercase = False
+        for i in password.text:
+            if i in special:
+                has_special = True
+            if i in numbers:
+                has_numbers = True
+            if i.capitalize() == i:
+                has_capital = True
+            if i.lower() == i:
+                has_lowercase = True
+        if (username.text not in users) and (
+                password.text == newpassword.text) and has_special and has_numbers and has_capital and has_lowercase and (len(password.text) > 7):
+            users[username.text] = password.text
+            self.manager.current = "login"
+
+class LoginScreen(Screen):
+    def enter_login(self, username,password):
+            if username in users and users[username]==password:
+                self.manager.current = "NewHome"
+            else:
+                self.manager.current = "Create"
+
+class NewHomeScreen(Screen):
+    pass
 
 
 class Question1Screen(Screen):

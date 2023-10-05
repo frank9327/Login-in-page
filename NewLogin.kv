@@ -1,17 +1,93 @@
 <QuizManager>
     HomeScreen:
         name: "home"
+    CreateScreen:
+        name: "Create"
+    LoginScreen:
+        name: "Login"
+    NewHomeScreen:
+        name: "NewHome"
 
 <HomeScreen>
     BoxLayout:
+        orientation: "vertical"
         BoxLayout:
             orientation: "vertical"
+            Button:
+                text: "Create new Account"
+                on_release: root.Screen_choice(True)
+            Button:
+                text: "Login"
+                on_release: root.Screen_choice(False)
+
+
+<LoginScreen>
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "horizontal"
             Label:
                 size_hint: .2, .2
                 text: "Username"
-            BoxLayout:
-                orientation: "horizontal"
-                TextInput:
-                    id: two
-                    size_hint: .2, .2
-                    hint_text: "enter the answer here"
+            TextInput:
+                id: username
+                size_hint: .5, .5
+                hint_text: "enter the answer here"
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                size_hint: .2, .2
+                text: "Password"
+            TextInput:
+                id: password
+                size_hint: .5, .5
+                hint_text: "enter the answer here"
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Enter"
+                on_release: root.enter_login(username.text,password.text)
+
+<CreateScreen>
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                size_hint: .2, .2
+                text: "New Username"
+            TextInput:
+                id: username
+                size_hint: .5, .5
+                hint_text: "enter the answer here"
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                size_hint: .3, .3
+                text: "New Password"
+            TextInput:
+                id: password
+                size_hint: .3, .3
+                hint_text: "enter the answer here"
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                size_hint: .3, .3
+                text: "ReEnter New Password"
+            TextInput:
+                id: newpassword
+                size_hint: .3, .3
+                hint_text: "enter the answer here"
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Password must contain at least one: \n-Capital Letters \n-Lowercase Letters \n-Number \n-Special Character \n-Passwords must match \n-Passwords must be at lease 8 characters long"
+            Button:
+                text: "Enter"
+                on_release: enter_login(username,password,newpassword)
+
+<NewHome>
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "yay"
