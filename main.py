@@ -14,7 +14,7 @@ class HomeScreen(Screen):
             self.manager.current = "Login"
 
 class CreateScreen(Screen):
-    def enter_login(self, username,password,newpassword):
+    def enter_new_login(self, username,password,newpassword):
         special = "~!@#$%^&*()_+-="
         has_special = False
         numbers = "1234567890"
@@ -33,7 +33,10 @@ class CreateScreen(Screen):
         if (username.text not in users) and (
                 password.text == newpassword.text) and has_special and has_numbers and has_capital and has_lowercase and (len(password.text) > 7):
             users[username.text] = password.text
-            self.manager.current = "login"
+            self.manager.current = "home"
+    def back(self):
+        self.manager.current = "Login"
+
 
 class LoginScreen(Screen):
     def enter_login(self, username,password):
@@ -41,9 +44,12 @@ class LoginScreen(Screen):
                 self.manager.current = "NewHome"
             else:
                 self.manager.current = "Create"
+    def back(self):
+        self.manager.current = "home"
 
-class NewHomeScreen(Screen):
-    pass
+class NewHome(Screen):
+    def back(self):
+        self.manager.current = "home"
 
 
 class Question1Screen(Screen):
