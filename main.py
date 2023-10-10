@@ -34,6 +34,8 @@ class CreateScreen(Screen):
                 password.text == newpassword.text) and has_special and has_numbers and has_capital and has_lowercase and (len(password.text) > 7):
             users[username.text] = password.text
             self.manager.current = "home"
+        else:
+            self.ids.enter.color = (1,0,0,1)
     def back(self):
         self.manager.current = "Login"
 
